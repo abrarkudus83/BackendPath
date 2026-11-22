@@ -7,7 +7,8 @@ const { DatabaseSync } = require('node:sqlite');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const folder = path.join(__dirname, 'database');
+/* DB_DIR bisa diarahkan ke disk permanen hosting; default tetap folder lokal. */
+const folder = process.env.DB_DIR || path.join(__dirname, 'database');
 fs.mkdirSync(folder, { recursive: true });
 
 const databaseFile = path.join(folder, 'backendpath.db');
