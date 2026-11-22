@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="BackendPath Developer — panduan belajar backend untuk junior: Node.js, PHP, Python, Go, database, REST API, dan deploy. Langkah demi langkah untuk pemula.">
+    <title>BackendPath Developer — Belajar Backend untuk Junior</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <a class="brand" href="#home" data-page="home" aria-label="BackendPath Developer, ke beranda"
+                data-i18n-aria="aria.brand">
+                <img class="brand-mark" src="assets/logo.svg" alt="" width="36" height="36">
+                <span class="brand-text">BackendPath <small>Developer</small></span>
+            </a>
+
+            <button class="menu-btn" id="menuBtn" type="button" aria-label="Buka menu" aria-expanded="false"
+                aria-controls="headerRight" data-i18n-aria="aria.menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="header-right" id="headerRight">
+                <nav class="main-nav" aria-label="Navigasi utama" data-i18n-aria="aria.nav">
+                    <a class="nav-link is-active" href="#home" data-page="home" data-i18n="nav.home">Belajar</a>
+                    <a class="nav-link" href="#materi" data-page="materi" data-i18n="nav.materi">Materi</a>
+                    <a class="nav-link" href="#latihan" data-page="latihan" data-i18n="nav.latihan">Latihan</a>
+                    <a class="nav-link" href="#docs" data-page="docs" data-i18n="nav.docs">Dokumentasi</a>
+                </nav>
+
+                <div class="lang-switch" role="group" aria-label="Pilih bahasa" data-i18n-aria="aria.lang">
+                    <button type="button" data-lang="id" class="is-active" aria-pressed="true">ID</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+
+                <button class="search-btn" id="headerSearch" type="button" aria-label="Cari materi"
+                    data-i18n-aria="aria.search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-3.5-3.5"></path>
+                    </svg>
+                    <span class="search-label" data-i18n="search.label">Cari</span>
+                </button>
+
+                <a class="btn btn-ghost btn-sm auth-link" id="authLink" href="login.html"
+                    data-i18n="nav.login">Masuk</a>
+
+                <a class="btn btn-primary btn-sm" href="#materi" data-page="materi" data-i18n="start.label">Mulai
+                    belajar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ================= HALAMAN BELAJAR ================= -->
+        <section id="home" class="page active-page">
+            <div class="hero">
+                <p class="hero-crumb" data-i18n="hero.crumb">Belajar / Backend Junior</p>
+                <h1 data-i18n="hero.title">Memulai backend untuk junior, langkah demi langkah</h1>
+                <p class="hero-desc" data-i18n="hero.desc">
+                    Pilih stack, ikuti panduan praktis, dan tandai setiap langkah yang sudah selesai. Semua materi
+                    disusun untuk kamu yang baru mulai, tanpa perlu pengalaman kerja.
+                </p>
+                <div class="hero-meta">
+                    <span data-i18n="hero.meta.beginner">Pemula</span>
+                    <span data-i18n="hero.meta.stacks">7 panduan stack</span>
+                    <span data-i18n="hero.meta.practice">Praktik langsung</span>
+                    <span data-i18n="hero.meta.free">Gratis</span>
+                </div>
+            </div>
+
+            <div class="stack-bar">
+                <div class="stack-inner" id="stackTabs" role="tablist" aria-label="Pilih stack belajar"
+                    data-i18n-aria="aria.tabs"></div>
+            </div>
+
+            <div class="guide-shell" id="guideShell">
+                <aside class="guide-sidebar">
+                    <div class="sidebar-card">
+                        <p class="sidebar-label" id="sidebarLabel">Panduan / Node.js</p>
+                        <h2 class="sidebar-title">Getting Started</h2>
+                        <ol class="step-nav" id="stepNav"></ol>
+                        <div class="sidebar-progress">
+                            <div class="progress-header">
+                                <span data-i18n="side.progress">Progres</span>
+                                <span id="sidebarProgress">0 / 5 langkah</span>
+                            </div>
+                            <div class="progress-track" role="progressbar" aria-label="Progres panduan"
+                                data-i18n-aria="side.progressAria" aria-valuemin="0" aria-valuemax="5"
+                                aria-valuenow="0" id="sidebarTrack">
+                                <div class="progress-fill" id="sidebarFill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="sidebar-link" href="#materi" data-page="materi" data-i18n="side.browse">Lihat semua
+                        panduan &rarr;</a>
+                </aside>
+
+                <div class="guide-main">
+                    <section class="guide-section" id="guideIntroSection">
+                        <p class="section-kicker">Introduction</p>
+                        <h2 class="guide-title" id="guideTitle">Memulai Backend dengan Node.js</h2>
+                        <div class="guide-intro" id="guideIntro"></div>
+
+                        <div class="guide-example">
+                            <p class="section-kicker" data-i18n="guide.exampleKicker">Gambaran hasil</p>
+                            <div class="code-block">
+                                <div class="code-head"><span id="guideExampleLabel">Respons API</span></div>
+                                <pre><code id="guideExampleCode"></code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="guide-section" id="guidePrereqSection">
+                        <p class="section-kicker">Prerequisites</p>
+                        <h2 class="guide-section-title" data-i18n="guide.prereqTitle">Yang perlu disiapkan</h2>
+                        <ul class="prereq-list" id="guidePrereqs"></ul>
+                    </section>
+
+                    <section class="guide-section" id="guideFilesSection" hidden>
+                        <p class="section-kicker" data-i18n="guide.filesKicker">Struktur proyek</p>
+                        <h2 class="guide-section-title" id="guideFilesTitle"></h2>
+                        <p class="guide-files-desc" id="guideFilesDesc"></p>
+                        <div id="guideFilesBlocks"></div>
+                    </section>
+
+                    <div id="guideSteps"></div>
+                    <div class="next-card" id="guideNext"></div>
+                </div>
+            </div>
+
+            <section class="home-next">
+                <div class="home-next-inner">
+                    <p class="section-kicker" data-i18n="home.kicker">Lanjutkan</p>
+                    <h2 data-i18n="home.title">Setelah mencoba panduan pertama</h2>
+                    <div class="next-grid">
+                        <a class="next-tile" href="#materi" data-page="materi">
+                            <span class="tile-kicker" data-i18n="home.tile1.kicker">01 / Jelajahi</span>
+                            <h3 data-i18n="home.tile1.title">Pilih dari 7 panduan</h3>
+                            <p data-i18n="home.tile1.text">Bandingkan Node.js, PHP, Python, Go, database, REST, dan Git
+                                sesuai minatmu.</p>
+                        </a>
+                        <a class="next-tile" href="#latihan" data-page="latihan">
+                            <span class="tile-kicker" data-i18n="home.tile2.kicker">02 / Uji</span>
+                            <h3 data-i18n="home.tile2.title">Coba kuis singkat</h3>
+                            <p data-i18n="home.tile2.text">Enam soal untuk mengecek pemahaman HTTP, SQL, Express, dan
+                                Git.</p>
+                        </a>
+                        <a class="next-tile" href="#docs" data-page="docs">
+                            <span class="tile-kicker" data-i18n="home.tile3.kicker">03 / Referensi</span>
+                            <h3 data-i18n="home.tile3.title">Buka dokumentasi</h3>
+                            <p data-i18n="home.tile3.text">Cheat sheet status code, query SQL, perintah Git, dan
+                                keamanan dasar.</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ================= MATERI ================= -->
+        <section id="materi" class="page">
+            <div class="page-intro">
+                <div class="page-intro-inner">
+                    <p class="crumbs" data-i18n="materi.crumb">Belajar / Materi</p>
+                    <h1 data-i18n="materi.title">Pilih panduan yang ingin kamu mulai</h1>
+                    <p data-i18n="materi.desc">
+                        Tujuh jalur praktik untuk membangun fondasi backend. Setiap panduan punya langkah, contoh
+                        kode, dan tips yang bisa langsung dicoba.
+                    </p>
+                </div>
+            </div>
+
+            <div class="page-body">
+                <div class="materi-toolbar">
+                    <label class="search-field" for="materiSearch">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m20 20-3.5-3.5"></path>
+                        </svg>
+                        <input type="search" id="materiSearch"
+                            placeholder="Cari materi, misalnya SQL atau Express"
+                            data-i18n-placeholder="materi.placeholder">
+                    </label>
+                    <span class="materi-count" id="materiCount">7 panduan</span>
+                </div>
+
+                <div class="materi-grid" id="materiGrid"></div>
+
+                <p class="empty-state" id="materiEmpty" hidden data-i18n="materi.empty">Tidak ada materi yang cocok.
+                    Coba kata kunci lain seperti &ldquo;SQL&rdquo;, &ldquo;API&rdquo;, atau &ldquo;Git&rdquo;.</p>
+            </div>
+        </section>
+
+        <!-- ================= LATIHAN ================= -->
+        <section id="latihan" class="page">
+            <div class="page-intro">
+                <div class="page-intro-inner">
+                    <p class="crumbs" data-i18n="latihan.crumb">Belajar / Latihan</p>
+                    <h1 data-i18n="latihan.title">Uji pemahaman dengan enam soal singkat</h1>
+                    <p data-i18n="latihan.desc">
+                        Tanpa batas waktu. Setiap jawaban langsung diberi penjelasan, jadi kamu bisa belajar dari
+                        kesalahan.
+                    </p>
+                </div>
+            </div>
+
+            <div class="page-body">
+                <div class="quiz-wrap">
+                    <div class="quiz-card" id="quizCard">
+                        <div class="quiz-top">
+                            <span id="quizProgressLabel">Soal 1 dari 6</span>
+                            <span id="quizScoreLabel">0 benar</span>
+                        </div>
+                        <div class="quiz-bar">
+                            <div class="quiz-bar-fill" id="quizBarFill"></div>
+                        </div>
+                        <h2 class="quiz-question" id="quizQuestion"></h2>
+                        <div class="quiz-options" id="quizOptions"></div>
+                        <p class="quiz-feedback" id="quizFeedback" aria-live="polite" hidden></p>
+                        <div class="quiz-footer">
+                            <button class="btn btn-primary" id="quizNext" type="button" disabled>Soal berikutnya</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-result" id="quizResult" hidden>
+                        <p class="section-kicker" data-i18n="quiz.resultKicker">Hasil kuis</p>
+                        <p class="quiz-score"><span id="quizFinalScore">0</span> / 6</p>
+                        <h2 id="quizResultTitle"></h2>
+                        <p id="quizResultText"></p>
+                        <div class="quiz-result-actions">
+                            <button class="btn btn-primary" id="quizRetry" type="button" data-i18n="quiz.retry">Coba
+                                lagi</button>
+                            <a class="btn btn-ghost" href="#materi" data-page="materi" data-i18n="quiz.openMateri">Buka
+                                materi</a>
+                        </div>
+                    </div>
+
+                    <div class="quiz-note">
+                        <strong data-i18n="quiz.tipsStrong">Tips:</strong>
+                        <span data-i18n="quiz.tipsText">ulangi kuis sampai skor 6/6, lalu praktikkan konsepnya di
+                            panduan stack yang kamu pilih.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= DOKUMENTASI ================= -->
+        <section id="docs" class="page">
+            <div class="page-intro">
+                <div class="page-intro-inner">
+                    <p class="crumbs" data-i18n="docs.crumb">Belajar / Dokumentasi</p>
+                    <h1 data-i18n="docs.title">Cheat sheet backend untuk pemula</h1>
+                    <p data-i18n="docs.desc">
+                        Referensi singkat yang bisa dibuka saat coding: HTTP, SQL, Git, Express, dan checklist
+                        keamanan dasar.
+                    </p>
+                </div>
+            </div>
+
+            <div class="page-body docs-layout">
+                <aside class="docs-nav">
+                    <p class="sidebar-label" data-i18n="docs.navLabel">Di halaman ini</p>
+                    <button type="button" data-scroll-to="doc-http" data-i18n="docs.navHttp">HTTP &amp; REST</button>
+                    <button type="button" data-scroll-to="doc-sql" data-i18n="docs.navSql">SQL dasar</button>
+                    <button type="button" data-scroll-to="doc-git" data-i18n="docs.navGit">Git</button>
+                    <button type="button" data-scroll-to="doc-express" data-i18n="docs.navExpress">Express</button>
+                    <button type="button" data-scroll-to="doc-security" data-i18n="docs.navSecurity">Keamanan</button>
+                </aside>
+
+                <div class="docs-content">
+                    <section class="doc-section" id="doc-http">
+                        <h2 data-i18n="docs.http.title">HTTP &amp; REST</h2>
+                        <p data-i18n="docs.http.desc">Gunakan method sesuai aksi, dan kembalikan status code yang jujur.
+                        </p>
+                        <div class="doc-table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="docs.http.method">Method</th>
+                                        <th data-i18n="docs.http.use">Kegunaan</th>
+                                        <th data-i18n="docs.http.example">Contoh endpoint</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>GET</code></td>
+                                        <td data-i18n="docs.http.getUse">Mengambil data</td>
+                                        <td><code>/api/todos</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>POST</code></td>
+                                        <td data-i18n="docs.http.postUse">Membuat data baru</td>
+                                        <td><code>/api/todos</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>PUT</code></td>
+                                        <td data-i18n="docs.http.putUse">Mengganti seluruh data</td>
+                                        <td><code>/api/todos/1</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>DELETE</code></td>
+                                        <td data-i18n="docs.http.deleteUse">Menghapus data</td>
+                                        <td><code>/api/todos/1</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="doc-table-wrap" style="margin-top:16px;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="docs.http.status">Status</th>
+                                        <th data-i18n="docs.http.statusMeaning">Arti</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>200</code></td>
+                                        <td data-i18n="docs.http.s200">Permintaan berhasil</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>201</code></td>
+                                        <td data-i18n="docs.http.s201">Data baru berhasil dibuat</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>400</code></td>
+                                        <td data-i18n="docs.http.s400">Input tidak valid</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>401</code></td>
+                                        <td data-i18n="docs.http.s401">Belum terautentikasi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>403</code></td>
+                                        <td data-i18n="docs.http.s403">Sudah login, tetapi tidak punya izin</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>404</code></td>
+                                        <td data-i18n="docs.http.s404">Data atau endpoint tidak ditemukan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>500</code></td>
+                                        <td data-i18n="docs.http.s500">Kesalahan di sisi server</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="doc-section" id="doc-sql">
+                        <h2 data-i18n="docs.sql.title">SQL dasar</h2>
+                        <p data-i18n="docs.sql.desc">Empat query yang paling sering dipakai saat membangun CRUD.</p>
+                        <div class="doc-code">
+                            <pre><code>SELECT id, title FROM todos WHERE done = false;
+
+INSERT INTO todos (title) VALUES ('Belajar SQL');
+
+UPDATE todos SET done = true WHERE id = 1;
+
+DELETE FROM todos WHERE id = 1;
+
+SELECT todos.title, users.email
+FROM todos
+JOIN users ON users.id = todos.user_id;</code></pre>
+                        </div>
+                        <ul class="doc-list">
+                            <li data-i18n-html="docs.sql.li1">Gunakan parameterized query (<code>$1</code>,
+                                <code>?</code>) untuk mencegah SQL injection.
+                            </li>
+                            <li data-i18n-html="docs.sql.li2">Tambahkan <code>INDEX</code> pada kolom yang sering dipakai
+                                di <code>WHERE</code> atau <code>JOIN</code>.
+                            </li>
+                            <li data-i18n-html="docs.sql.li3">Selalu uji <code>DELETE</code> dan <code>UPDATE</code>
+                                dengan <code>SELECT</code> lebih dulu.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="doc-section" id="doc-git">
+                        <h2 data-i18n="docs.git.title">Git</h2>
+                        <p data-i18n="docs.git.desc">Alur minimum untuk menyimpan pekerjaan dan berkolaborasi.</p>
+                        <div class="doc-table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="docs.git.cmd">Perintah</th>
+                                        <th data-i18n="docs.git.fn">Fungsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>git status</code></td>
+                                        <td data-i18n="docs.git.fn1">Melihat file yang berubah</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>git add .</code></td>
+                                        <td data-i18n="docs.git.fn2">Menandai perubahan untuk di-commit</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>git commit -m "pesan"</code></td>
+                                        <td data-i18n="docs.git.fn3">Menyimpan snapshot perubahan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>git switch -c fitur-login</code></td>
+                                        <td data-i18n="docs.git.fn4">Membuat branch baru</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>git push -u origin main</code></td>
+                                        <td data-i18n="docs.git.fn5">Mengirim commit ke GitHub</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="doc-section" id="doc-express">
+                        <h2 data-i18n="docs.express.title">Express</h2>
+                        <p data-i18n="docs.express.desc">Kerangka minimal untuk API Node.js. Urutan middleware penting:
+                            body parser dipasang sebelum route yang membutuhkannya.</p>
+                        <div class="doc-code">
+                            <pre><code>const express = require('express')
+const app = express()
+
+app.use(express.json())
+
+app.get('/api/todos', (req, res) => {
+  res.json([])
+})
+
+app.post('/api/todos', (req, res) => {
+  const { title } = req.body
+  if (!title) {
+    return res.status(400).json({ error: 'title wajib diisi' })
+  }
+  res.status(201).json({ id: 1, title })
+})
+
+app.listen(3000)</code></pre>
+                        </div>
+                        <ul class="doc-list">
+                            <li data-i18n-html="docs.express.li1">Simpan port dan kredensial di <code>.env</code>,
+                                bukan langsung di kode.</li>
+                            <li data-i18n-html="docs.express.li2">Kembalikan <code>400</code> untuk input tidak valid,
+                                bukan <code>500</code>.</li>
+                            <li data-i18n-html="docs.express.li3">Gunakan <code>express.Router()</code> jika route
+                                mulai banyak.</li>
+                        </ul>
+                    </section>
+
+                    <section class="doc-section" id="doc-security">
+                        <h2 data-i18n="docs.security.title">Keamanan dasar</h2>
+                        <p data-i18n="docs.security.desc">Checklist minimum sebelum API dibagikan ke orang lain.</p>
+                        <ul class="doc-list">
+                            <li data-i18n-html="docs.security.li1">Hash password dengan <code>bcrypt</code> atau
+                                <code>argon2</code>; jangan simpan teks asli.
+                            </li>
+                            <li data-i18n-html="docs.security.li2">Validasi semua input di server, bukan hanya di
+                                front-end.</li>
+                            <li data-i18n-html="docs.security.li3">Jangan commit <code>.env</code>; tambahkan ke
+                                <code>.gitignore</code>.</li>
+                            <li data-i18n-html="docs.security.li4">Gunakan HTTPS di produksi dan rotasi token rahasia
+                                secara berkala.</li>
+                            <li data-i18n-html="docs.security.li5">Tambahkan rate limit pada endpoint login untuk
+                                mencegah brute force.</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img class="brand-mark" src="assets/logo.svg" alt="" width="36" height="36">
+                    <span class="brand-text">BackendPath <small>Developer</small></span>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#home" data-page="home" data-i18n="nav.home">Belajar</a></li>
+                    <li><a href="#materi" data-page="materi" data-i18n="nav.materi">Materi</a></li>
+                    <li><a href="#latihan" data-page="latihan" data-i18n="nav.latihan">Latihan</a></li>
+                    <li><a href="#docs" data-page="docs" data-i18n="nav.docs">Dokumentasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year">2026</span> <span data-i18n="footer.copy">BackendPath Developer. Dibuat untuk
+                        belajar backend secara mandiri.</span></p>
+                <p data-i18n="footer.motto">Belajar &rarr; praktik &rarr; ulangi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

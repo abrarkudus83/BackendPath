@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Database (berisi data akun & sesi)
+backend/database/*.db
+backend/database/*.db-journal
+backend/database/*.db-wal
+backend/database/*.db-shm
+
+# Environment
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

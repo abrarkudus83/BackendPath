@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masuk atau daftar akun BackendPath Developer untuk menyimpan data belajarmu.">
+    <meta name="theme-color" content="#0d7c86">
+    <title>Masuk — BackendPath Developer</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+    <header class="site-header auth-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" data-login-aria="aria.brand">
+                <img class="brand-mark" src="assets/logo.svg" alt="" width="36" height="36">
+                <span class="brand-text">BackendPath <small>Developer</small></span>
+            </a>
+
+            <div class="auth-header-actions">
+                <div class="lang-switch" role="group" aria-label="Pilih bahasa" data-login-aria="aria.lang">
+                    <button type="button" data-lang="id" class="is-active" aria-pressed="true">ID</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+
+                <a class="auth-back" href="index.html" data-login-aria="auth.back">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M19 12H5"></path>
+                        <path d="m12 19-7-7 7-7"></path>
+                    </svg>
+                    <span data-login-i18n="auth.back">Kembali ke materi</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <section class="auth-card" aria-labelledby="authAsideTitle">
+            <aside class="auth-aside">
+                <p class="section-kicker" data-login-i18n="auth.asideKicker">Akun belajar</p>
+                <h1 id="authAsideTitle" data-login-i18n="auth.asideTitle">Masuk supaya belajarmu rapi di satu akun</h1>
+                <p data-login-i18n="auth.asideDesc">
+                    Halaman ini contoh nyata menyimpan akun ke database. Cocok untuk latihan alur login di proyek
+                    backend pertamamu.
+                </p>
+
+                <ul class="auth-points">
+                    <li data-login-i18n="auth.point1">Data akun disimpan di database SQLite lokal.</li>
+                    <li data-login-i18n="auth.point2">Password di-hash dengan scrypt, bukan disimpan sebagai teks asli.
+                    </li>
+                    <li data-login-i18n="auth.point3">Sesi login memakai cookie HttpOnly.</li>
+                </ul>
+            </aside>
+
+            <div class="auth-panel">
+                <div id="authForms">
+                    <div class="auth-tabs" role="tablist" aria-label="Pilih formulir" data-login-aria="aria.tabs">
+                        <button type="button" role="tab" id="loginTab" data-auth-tab="login" aria-selected="true"
+                            aria-controls="loginForm" class="is-active" data-login-i18n="auth.tabLogin">Masuk</button>
+                        <button type="button" role="tab" id="registerTab" data-auth-tab="register"
+                            aria-selected="false" aria-controls="registerForm" data-login-i18n="auth.tabRegister">Daftar
+                            akun</button>
+                    </div>
+
+                    <form class="auth-form" id="loginForm" role="tabpanel" aria-labelledby="loginTab" novalidate>
+                        <h2 data-login-i18n="auth.loginTitle">Selamat datang kembali</h2>
+                        <p class="auth-form-desc" data-login-i18n="auth.loginDesc">Masukkan email dan password akunmu.</p>
+
+                        <div class="auth-field">
+                            <label for="loginEmail" data-login-i18n="auth.email">Email</label>
+                            <input id="loginEmail" name="email" type="email" autocomplete="email"
+                                data-login-placeholder="auth.emailPlaceholder" required>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="loginPassword" data-login-i18n="auth.password">Password</label>
+                            <input id="loginPassword" name="password" type="password" autocomplete="current-password"
+                                data-login-placeholder="auth.passwordPlaceholder" required>
+                        </div>
+
+                        <button class="btn btn-primary auth-submit" type="submit" data-login-submit="auth.submitLogin"
+                            data-login-i18n="auth.submitLogin">Masuk</button>
+                    </form>
+
+                    <form class="auth-form" id="registerForm" role="tabpanel" aria-labelledby="registerTab" hidden
+                        novalidate>
+                        <h2 data-login-i18n="auth.registerTitle">Buat akun baru</h2>
+                        <p class="auth-form-desc" data-login-i18n="auth.registerDesc">Cukup nama, email, dan password
+                            minimal 8 karakter.</p>
+
+                        <div class="auth-field">
+                            <label for="registerName" data-login-i18n="auth.name">Nama</label>
+                            <input id="registerName" name="name" type="text" autocomplete="name" maxlength="60"
+                                data-login-placeholder="auth.namePlaceholder" required>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="registerEmail" data-login-i18n="auth.email">Email</label>
+                            <input id="registerEmail" name="email" type="email" autocomplete="email" maxlength="120"
+                                data-login-placeholder="auth.emailPlaceholder" required>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="registerPassword" data-login-i18n="auth.password">Password</label>
+                            <input id="registerPassword" name="password" type="password" autocomplete="new-password"
+                                minlength="8" data-login-placeholder="auth.passwordPlaceholder" required>
+                        </div>
+
+                        <button class="btn btn-primary auth-submit" type="submit"
+                            data-login-submit="auth.submitRegister" data-login-i18n="auth.submitRegister">Daftar</button>
+                    </form>
+                </div>
+
+                <div class="auth-account" id="authAccount" hidden>
+                    <div class="account-badge" id="accountInitial" aria-hidden="true">B</div>
+                    <p class="section-kicker" data-login-i18n="auth.accountKicker">Sesi aktif</p>
+                    <h2 data-login-i18n="auth.accountTitle">Kamu sudah masuk</h2>
+                    <p class="account-name" id="accountName"></p>
+                    <p class="account-email" id="accountEmail"></p>
+
+                    <div class="auth-actions">
+                        <a class="btn btn-primary" href="index.html#materi" data-login-i18n="auth.continue">Lanjut
+                            belajar</a>
+                        <button class="btn btn-ghost" type="button" id="logoutBtn" data-login-i18n="auth.logout">Keluar</button>
+                    </div>
+                </div>
+
+                <p class="auth-status" id="authStatus" role="status" aria-live="polite" hidden></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="auth-footer">
+        <p>BackendPath Developer &middot; <span data-login-i18n="auth.footerNote">Data akun disimpan di SQLite
+                lokal.</span></p>
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
