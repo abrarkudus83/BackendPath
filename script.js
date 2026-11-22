@@ -1398,6 +1398,9 @@ function setLanguage(lang) {
 }
 
 /* ================= Akun pengguna ================= */
+/* GitHub Pages hanya menyajikan file statis, jadi backend /api tidak tersedia. */
+const STATIC_MODE = /\.github\.io$/i.test(window.location.hostname);
+
 let currentUser = null;
 
 function refreshAuthLink() {
@@ -2149,5 +2152,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initQuiz();
     initDocs();
     initYear();
-    loadCurrentUser();
+
+    if (!STATIC_MODE) {
+        loadCurrentUser();
+    }
 });
