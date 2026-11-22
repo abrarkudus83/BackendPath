@@ -44,6 +44,7 @@ const TEXT = {
         'auth.successRegister': 'Akun dibuat. Mengarahkan ke materi...',
         'auth.logoutSuccess': 'Kamu sudah keluar dari akun ini.',
         'auth.footerNote': 'Data akun disimpan di SQLite lokal.',
+        'auth.demoNotice': 'Mode demo statis: halaman ini hanya tampilan. Login dan daftar nonaktif karena server Node tidak berjalan di GitHub Pages.',
 
         'error.INVALID_INPUT': 'Periksa kembali isianmu. Nama minimal 2 karakter dan password minimal 8 karakter.',
         'error.EMAIL_TAKEN': 'Email ini sudah terdaftar. Coba tab Masuk.',
@@ -92,6 +93,7 @@ const TEXT = {
         'auth.successRegister': 'Account created. Taking you to the materials...',
         'auth.logoutSuccess': 'You have signed out of this account.',
         'auth.footerNote': 'Account data is stored in local SQLite.',
+        'auth.demoNotice': 'Static demo mode: this is a display-only preview. Login and sign-up are disabled because the Node server does not run on GitHub Pages.',
 
         'error.INVALID_INPUT': 'Check your input. The name needs at least 2 characters and the password at least 8.',
         'error.EMAIL_TAKEN': 'This email is already registered. Try the Log in tab.',
@@ -102,6 +104,9 @@ const TEXT = {
         'error.NOT_LOGGED_IN': 'Your session has ended. Please log in again.'
     }
 };
+
+/* GitHub Pages hanya menyajikan file statis, jadi backend /api tidak tersedia. */
+const STATIC_MODE = /\.github\.io$/i.test(window.location.hostname);
 
 let lang = 'id';
 let currentUser = null;
@@ -236,6 +241,11 @@ loginForm.addEventListener('submit', async event => {
     event.preventDefault();
     clearStatus();
 
+    if (STATIC_MODE) {
+        showStatus(t('auth.demoNotice'), 'error');
+        return;
+    }
+
     const email = loginForm.elements.email.value.trim();
     const password = loginForm.elements.password.value;
 
@@ -271,6 +281,11 @@ loginForm.addEventListener('submit', async event => {
 registerForm.addEventListener('submit', async event => {
     event.preventDefault();
     clearStatus();
+
+    if (STATIC_MODE) {
+        showStatus(t('auth.demoNotice'), 'error');
+        return;
+    }
 
     const name = registerForm.elements.name.value.replace(/\s+/g, ' ').trim();
     const email = registerForm.elements.email.value.trim();
@@ -357,4 +372,9 @@ async function checkSession() {
 
 lang = readLang();
 applyLanguage();
-checkSession();
+
+if (STATIC_MODE) {
+    showStatus(t('auth.demoNotice'), 'error');
+} else {
+    checkSession();
+}
