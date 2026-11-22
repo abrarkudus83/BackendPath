@@ -350,6 +350,10 @@ document.querySelectorAll('.lang-switch button').forEach(button => {
 
         clearStatus();
         applyLanguage();
+
+        if (STATIC_MODE) {
+            showStatus(t('auth.demoNotice'), 'error');
+        }
     });
 });
 
